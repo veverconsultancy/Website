@@ -22,29 +22,92 @@
       100% { transform: translateY(0px); }
     }
 
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    body {
+      background: #09090b;
+      overflow-x: hidden;
+    }
+
     .float {
       animation: float 4s ease-in-out infinite;
     }
 
+    .fade-up {
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+    }
+
     a {
       color: #3b82f6;
+      transition: all 0.3s ease;
     }
 
     a:hover {
       color: #60a5fa;
     }
+
+    .glow-btn {
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .glow-btn:hover {
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .glass {
+      backdrop-filter: blur(12px);
+      background: rgba(24, 24, 27, 0.7);
+    }
+	@keyframes slideLogo {
+  0% {
+    transform: translateX(-25px);
+  }
+
+  50% {
+    transform: translateX(25px);
+  }
+
+  100% {
+    transform: translateX(-25px);
+  }
+}
+
+.slide-logo {
+  animation:
+    float 4s ease-in-out infinite,
+    slideLogo 6s ease-in-out infinite;
+}
   </style>
 </head>
 
-<body class="bg-zinc-950 text-white">
+<body class="text-white">
 
   <!-- Navbar -->
-  <nav class="fixed top-0 w-full bg-black border-b border-zinc-800 z-50">
+  <nav class="fixed top-0 w-full glass border-b border-zinc-800 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      
+
       <div class="flex items-center gap-3">
         <img src="logo.png" class="h-10"/>
-        <span class="text-xl font-bold text-white"></span>
       </div>
 
       <div class="hidden md:flex gap-8 text-sm">
@@ -53,7 +116,8 @@
         <a href="#values">Values</a>
       </div>
 
-      <a href="#contact" class="bg-white text-black px-5 py-2 rounded-full">
+      <a href="#contact"
+        class="bg-white text-black px-5 py-2 rounded-full hover:bg-blue-500 hover:text-white transition">
         Connect Now
       </a>
     </div>
@@ -61,12 +125,25 @@
 
   <!-- Hero -->
   <section class="min-h-screen flex items-center justify-center pt-20 text-center px-6 bg-gradient-to-br from-zinc-900 via-blue-950 to-zinc-900">
-    <div class="max-w-4xl">
 
-      <img src="logo.png" class="mx-auto mb-6 h-28 float"/>
+    <div class="max-w-4xl fade-up">
 
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">
-        Strategic HR Partner<br/>Talent That Drives Growth
+      <div class="relative flex justify-center items-center mb-8">
+
+  <!-- Animated background glow -->
+  <div class="absolute w-72 h-72 bg-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
+
+  <!-- Sliding logo -->
+  <img 
+    src="logo.png" 
+    class="relative h-28 md:h-32 float slide-logo"
+  />
+
+</div>
+
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        Strategic HR Partner<br/>
+        Talent That Drives Growth
       </h1>
 
       <p class="text-lg text-zinc-400 mb-10">
@@ -74,70 +151,108 @@
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#contact" class="bg-blue-600 text-white px-8 py-3 rounded-xl">
+
+        <a href="#contact"
+          class="bg-blue-600 text-white px-8 py-3 rounded-xl glow-btn">
           Start Hiring Better
         </a>
-        <a href="#contact" class="bg-blue-600 text-white px-8 py-3 rounded-xl">
+
+        <a href="#services"
+          class="bg-blue-600 text-white px-8 py-3 rounded-xl glow-btn">
           Explore Services
         </a>
+
       </div>
+
     </div>
   </section>
 
   <!-- Services -->
   <section id="services" class="py-20 bg-zinc-900 text-center">
-    <h2 class="text-4xl font-bold mb-12 text-white">Our Services</h2>
+
+    <h2 class="text-4xl font-bold mb-12 text-white fade-up">
+      Our Services
+    </h2>
 
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <a href="#exec"><div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900">Executive Recruitment</div></a>
-      <a href="#rpo"><div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900">RPO</div></a>
-      <a href="#manpower"><div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900">Manpower Outsourcing</div></a>
-      <a href="#payroll"><div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900">Payroll Management</div></a>
-      <a href="#performance"><div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900">Performance Management</div></a>
-      <a href="#lifecycle"><div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900">Hire to Retire</div></a>
+      <a href="#exec">
+        <div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900 hover-lift">
+          Executive Recruitment
+        </div>
+      </a>
+
+      <a href="#rpo">
+        <div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900 hover-lift">
+          Recruitment Process Outsourcing
+        </div>
+      </a>
+
+      <a href="#manpower">
+        <div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900 hover-lift">
+          Manpower Outsourcing
+        </div>
+      </a>
+
+      <a href="#payroll">
+        <div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900 hover-lift">
+          Payroll Management
+        </div>
+      </a>
+
+      <a href="#performance">
+        <div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900 hover-lift">
+          Performance Management
+        </div>
+      </a>
+
+      <a href="#lifecycle">
+        <div class="bg-zinc-800 p-6 rounded-2xl hover:bg-blue-900 hover-lift">
+          Hire to Retire
+        </div>
+      </a>
 
     </div>
   </section>
 
-  <!-- DETAILS -->
+  <!-- Service Details -->
 
-  <section id="exec" class="py-20 text-center px-6">
+  <section id="exec" class="py-20 text-center px-6 fade-up">
     <h2 class="text-3xl font-bold text-white">Executive Recruitment</h2>
     <p class="text-zinc-400 mt-3 max-w-xl mx-auto">
       Identifying and securing top leadership talent aligned with business strategy.
     </p>
   </section>
 
-  <section id="rpo" class="py-20 text-center px-6 bg-zinc-900">
-    <h2 class="text-3xl font-bold text-white">RPO</h2>
+  <section id="rpo" class="py-20 text-center px-6 bg-zinc-900 fade-up">
+    <h2 class="text-3xl font-bold text-white">Recruitment Process Outsourcing</h2>
     <p class="text-zinc-400 mt-3 max-w-xl mx-auto">
       End-to-end recruitment process handling to improve hiring efficiency and speed.
     </p>
   </section>
 
-  <section id="manpower" class="py-20 text-center px-6">
+  <section id="manpower" class="py-20 text-center px-6 fade-up">
     <h2 class="text-3xl font-bold text-white">Manpower Outsourcing</h2>
     <p class="text-zinc-400 mt-3 max-w-xl mx-auto">
       Skilled workforce deployment with compliance and contract management.
     </p>
   </section>
 
-  <section id="payroll" class="py-20 text-center px-6 bg-zinc-900">
+  <section id="payroll" class="py-20 text-center px-6 bg-zinc-900 fade-up">
     <h2 class="text-3xl font-bold text-white">Payroll Management</h2>
     <p class="text-zinc-400 mt-3 max-w-xl mx-auto">
       Salary processing, statutory filings, and compliance reporting.
     </p>
   </section>
 
-  <section id="performance" class="py-20 text-center px-6">
+  <section id="performance" class="py-20 text-center px-6 fade-up">
     <h2 class="text-3xl font-bold text-white">Performance Management</h2>
     <p class="text-zinc-400 mt-3 max-w-xl mx-auto">
       KPI frameworks and appraisal systems for better productivity.
     </p>
   </section>
 
-  <section id="lifecycle" class="py-20 text-center px-6 bg-zinc-900">
+  <section id="lifecycle" class="py-20 text-center px-6 fade-up">
     <h2 class="text-3xl font-bold text-white">Hire to Retire</h2>
     <p class="text-zinc-400 mt-3 max-w-xl mx-auto">
       Full employee lifecycle management from onboarding to exit.
@@ -145,55 +260,100 @@
   </section>
 
   <!-- Industries -->
-<section id="industries" class="py-20 text-center">
-  <h2 class="text-4xl font-bold mb-10 text-white">Industry Experience</h2>
+  <section id="industries" class="py-20 text-center">
 
-  <div class="flex flex-wrap justify-center gap-4">
-    
-    <!-- NEW -->
-     <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">
-      Healthcare
+    <h2 class="text-4xl font-bold mb-10 text-white fade-up">
+      Industry Experience
+    </h2>
+
+    <div class="flex flex-wrap justify-center gap-4 px-6">
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Healthcare
+      </div>
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Information Technology
+      </div>
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Cybersecurity
+      </div>
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Infrastructure
+      </div>
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Oil & Gas
+      </div>
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Medical Devices
+      </div>
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Power
+      </div>
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Automobile
+      </div>
+
+      <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 hover-lift">
+        Semiconductor
+      </div>
+
     </div>
-
-    <!-- NEW -->
-    <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">
-      Information Technology
-    </div>
-
-    <!-- NEW -->
-    <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">
-      Cybersecurity
-    </div>
-
-    <!-- EXISTING -->
-    <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">Infrastructure</div>
-    <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">Oil & Gas</div>
-    <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">Medical Devices</div>
-    <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">Power</div>
-    <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">Automobile</div>
-    <div class="bg-zinc-800 px-5 py-2 rounded-xl hover:bg-blue-900 transition">Semiconductor</div>
-
-  </div>
-</section>
+  </section>
 
   <!-- Values -->
-  <section id="values" class="py-20 bg-zinc-900 text-center px-6">
-    <h2 class="text-4xl font-bold mb-6 text-white">Our Values</h2>
+  <section id="values" class="py-20 bg-zinc-900 text-center px-6 fade-up">
+
+    <h2 class="text-4xl font-bold mb-6 text-white">
+      Our Values
+    </h2>
+
     <p class="text-zinc-400 max-w-2xl mx-auto">
       Integrity, transparency, flexibility and accountability drive everything we do.
+      We work as an extension of your team to deliver efficient and growth-focused HR solutions.
     </p>
+
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-20 text-center">
-    <h2 class="text-4xl font-bold mb-6 text-white">Let’s Work Together</h2>
+  <section id="contact" class="py-20 text-center fade-up">
+
+    <h2 class="text-4xl font-bold mb-6 text-white">
+      Let’s Work Together
+    </h2>
 
     <p class="mb-2">📞 78499 21523</p>
-    <p>✉️ veverconsultancy@gmail.com</p>
+    <p class="mb-8">✉️ veverconsultancy@gmail.com</p>
 
-    <a href="tel:7849921523" class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-xl">
-      Call Now
-    </a>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+
+      <!-- Call -->
+      <a href="tel:7849921523"
+        class="bg-blue-600 text-white px-6 py-3 rounded-xl glow-btn">
+        📞 Call Now
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/917849921523"
+        target="_blank"
+        class="bg-green-600 text-white px-6 py-3 rounded-xl hover-lift">
+        💬 WhatsApp
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:veverconsultancy@gmail.com"
+        class="bg-zinc-800 text-white px-6 py-3 rounded-xl hover-lift border border-zinc-700">
+        ✉️ Email Us
+      </a>
+
+    </div>
+
   </section>
 
 </body>
